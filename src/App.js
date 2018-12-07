@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios'
 import Konten from './komponen/Konten'
+import Loading from './komponen/Loading'
 
 class App extends Component {
   
@@ -24,7 +25,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="pt-3 App-header">
-          <p>Cuaca Hari Ini</p>
+          <p><span role='img' aria-label='cuaca'>⛅</span> 
+            Cuaca Hari Ini</p>
         </header>
 
         <center>
@@ -36,14 +38,14 @@ class App extends Component {
             }/>
             <div className='input-group-append'>
               <button onClick={cari} 
-              className='btn btn-success'>Cari</button>
+              className='btn btn-info'>Cari</button>
             </div>
           </div>
         </center>
 
         {this.state.cuaca ?
         <Konten data={this.state.cuaca}/> :
-        <p>Data belum tersedia...</p>
+        <Loading />
         }
         
       </div>
