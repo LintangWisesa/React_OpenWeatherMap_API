@@ -41,13 +41,13 @@ class App extends Component {
               className='btn btn-info'>Cari</button>
             </div>
           </div>
-        </center>
-
+        
         {this.state.cuaca ?
         <Konten data={this.state.cuaca}/> :
         <Loading />
         }
-        
+
+        </center>
       </div>
     );
   }
