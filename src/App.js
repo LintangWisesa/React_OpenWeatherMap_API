@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios'
+import Konten from './komponen/Konten'
 
 class App extends Component {
-  state = {kota: '', cuaca:''}
+  
+  state = {
+    kota: '', 
+    cuaca: ''
+  }
+
   render() {
     let cari = () => {
       var apikey = '361fca442399d6dac58d4c36a466273b'
@@ -17,19 +23,29 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="pt-3 App-header">
           <p>Cuaca Hari Ini</p>
         </header>
-        <input ref='kota' type='text' 
-        placeholder='Ketik kota Anda...'
-        onInput={()=>{
-          this.setState({kota: this.refs.kota.value})}
-        }/>
-        <button onClick={cari}>Cari</button>
-        <p>{this.state.cuaca ? this.state.cuaca.name : ''}</p>
-        <p>{this.state.cuaca ? this.state.cuaca.coord.lon : ''}</p>
-        <p>{this.state.cuaca ? this.state.cuaca.coord.lat : ''}</p>
-        <p>{this.state.cuaca ? (this.state.cuaca.main.temp - 273) : ''}</p>
+
+        <center>
+          <div className='input-group my-3 w-50'>
+            <input ref='kota' type='text' className='form-control'
+            placeholder='Ketik kota Anda...'
+            onInput={()=>{
+              this.setState({kota: this.refs.kota.value})}
+            }/>
+            <div className='input-group-append'>
+              <button onClick={cari} 
+              className='btn btn-success'>Cari</button>
+            </div>
+          </div>
+        </center>
+
+        {this.state.cuaca ?
+        <Konten data={this.state.cuaca}/> :
+        <p>Data belum tersedia...</p>
+        }
+        
       </div>
     );
   }
